@@ -1,5 +1,5 @@
 var Squares = document.querySelectorAll('.Square');
-var name, col, row;
+var name, col, row, currentID;
 
 function mapping(i){
   var colLetters = "ABCDEFGHIJ";
@@ -8,11 +8,25 @@ function mapping(i){
   return col + row;
 }
 
+function selectPiece(){
+  Squares[currentID+1].classList.add('select');
+  Squares[currentID-1].classList.add('select');
+  Squares[currentID%7].classList.add('select');
+  Squares[currentID%8].classList.add('select');
+  Squares[currentID%9].classList.add('select');
+  Squares[currentID+7].classList.add('select');
+  Squares[currentID+8].classList.add('select');
+  Squares[currentID+9].classList.add('select');
+}
+
 function piece(square, idx) {
   var buildSquare = square;
-  if(idx === 3){
+
+  if(idx === 11){
+    currentID = idx;
     buildSquare.classList.add('red');
     buildSquare.innerHTML = "K";
+    buildSquare.addEventListener('click', selectPiece)
   };
   return buildSquare;
 }
