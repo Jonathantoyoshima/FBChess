@@ -4,16 +4,44 @@ var redPieces = {
   color: 'red',
   Ki: {
     type: 'Ki',
-    position: 3,
+    position: 4,
     moveRule:function(){
       moveKi(this.position, this.type);
     }
   },
   Qu: {
     type: 'Qu',
-    position: 4,
+    position: 3,
     moveRule:function(){
       moveQu(this.position, this.type)
+    }
+  },
+  B1: {
+    type: 'B1',
+    position: 2,
+    moveRule:function(){
+      moveBi(this.position, this.type)
+    }
+  },
+  B2: {
+    type: 'B2',
+    position: 5,
+    moveRule:function(){
+      moveBi(this.position, this.type)
+    }
+  },
+  H1: {
+    type: 'H1',
+    position: 0,
+    moveRule:function(){
+      moveHo(this.position, this.type)
+    }
+  },
+  H2: {
+    type: 'H2',
+    position: 7,
+    moveRule:function(){
+      moveHo(this.position, this.type)
     }
   },
 }
@@ -33,7 +61,35 @@ var bluePieces = {
     moveRule:function(){
       moveQu(this.position, this.type)
     }
-  }
+  },
+  B1: {
+    type: 'B1',
+    position: 58,
+    moveRule:function(){
+      moveBi(this.position, this.type)
+    }
+  },
+  B2: {
+    type: 'B2',
+    position: 61,
+    moveRule:function(){
+      moveBi(this.position, this.type)
+    }
+  },
+  H1: {
+    type: 'H1',
+    position: 56,
+    moveRule:function(){
+      moveHo(this.position, this.type)
+    }
+  },
+  H2: {
+    type: 'H2',
+    position: 63,
+    moveRule:function(){
+      moveHo(this.position, this.type)
+    }
+  },
 }
 
 function render(){
