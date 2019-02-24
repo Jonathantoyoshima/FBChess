@@ -44,6 +44,20 @@ var redPieces = {
       moveHo(this.position, this.type)
     }
   },
+  K1: {
+    type: 'K1',
+    position: 1,
+    moveRule:function(){
+      moveKn(this.position, this.type)
+    }
+  },
+  K2: {
+    type: 'K2',
+    position: 6,
+    moveRule:function(){
+      moveKn(this.position, this.type)
+    }
+  },
 }
 
 var bluePieces = {
@@ -88,6 +102,20 @@ var bluePieces = {
     position: 63,
     moveRule:function(){
       moveHo(this.position, this.type)
+    }
+  },
+  K1: {
+    type: 'K1',
+    position: 57,
+    moveRule:function(){
+      moveKn(this.position, this.type)
+    }
+  },
+  K2: {
+    type: 'K2',
+    position: 62,
+    moveRule:function(){
+      moveKn(this.position, this.type)
     }
   },
 }
