@@ -1,39 +1,17 @@
 var Squares = document.querySelectorAll('.Square');
-var isRed = true;
-function cornersT (value) { return value - 8 < 0; }
-function cornersB (value) { return value + 8 >= Squares.length; }
-function cornersL (value) { return value % 8 == 0; }
-function cornersR (value) { return (value + 1) % 8 == 0; }
-function hasRedPiece (value) {
-  for (var piece in redPieces) {
-    if (redPieces.hasOwnProperty(piece)) {
-      if(redPieces[piece].position == value){
-        return true;
-      };
-    }
-  }
-  return false;
-}
-function hasBluePiece (value) {
-  for (var piece in bluePieces) {
-    if (bluePieces.hasOwnProperty(piece)) {
-      return bluePieces[piece].position == value;
-    }
-  }
-}
-
+var isRed = false;
 var redPieces = {
   color: 'red',
   Ki: {
     type: 'Ki',
-    position: 4,
+    position: 3,
     moveRule:function(){
       moveKi(this.position, this.type);
     }
   },
   Qu: {
     type: 'Qu',
-    position: 3,
+    position: 4,
     moveRule:function(){
       moveQu(this.position, this.type)
     }
@@ -59,8 +37,7 @@ var bluePieces = {
 }
 
 function render(){
-  removeSelects();
-  removeClicks();
+  remove();
   for (var i = 0; i < Squares.length; i++) {
     Squares[i].innerHTML = i;
     Squares[i].thisID = i;
@@ -107,86 +84,22 @@ function render(){
   }
 }
 
-function move(e){
-  console.log(e.target)
-  if(isRed){
-    redPieces[e.target.hasPiece].position = e.target.thisID;
-  }else{
-    bluePieces[e.target.hasPiece].position = e.target.thisID;
-  }
-  isRed = !isRed;
-  render();
-}
-function select(e){
-  render();
-  if(isRed){
-    redPieces[e.target.hasPiece].moveRule();
-  }else{
-    bluePieces[e.target.hasPiece].moveRule();
-  }
-  e.target.removeEventListener('click', select);
-}
-
-function selectSquare(pos, piece){
-  if (isRed) {
-    if(!hasRedPiece(pos)) {
-      Squares[pos].hasPiece = piece;
-      Squares[pos].classList.add('select');
-      Squares[pos].addEventListener('click', move);
-    }
-  } else{
-    if(!hasBluePiece(pos)) {
-      Squares[pos].hasPiece = piece;
-      Squares[pos].classList.add('select');
-      Squares[pos].addEventListener('click', move);
-    }
-  }
-}
-
-function removeSelects(){
+function remove(){
   var div, i;
   div = document.querySelectorAll('.select');
   for (i = 0; i < div.length; i++) {
+    div[i].removeEventListener('click', select);
     div[i].removeEventListener('click', move);
   }
-}
-
-function removeClicks(){
-    var div, i;
   div = document.querySelectorAll('.red');
   for (i = 0; i < div.length; i++) {
     div[i].removeEventListener('click', select);
+    div[i].removeEventListener('click', move);
   }
   div = document.querySelectorAll('.blue');
   for (i = 0; i < div.length; i++) {
     div[i].removeEventListener('click', select);
-  }
-}
-
-function moveKi(pos, piece){
-  if( !cornersB(pos) ){
-      selectSquare(pos + 8, piece);
-  }
-  if(!cornersB(pos) && !cornersL(pos)){
-    selectSquare(pos + 7, piece);
-  }
-  if(!cornersB(pos) && !cornersR(pos)){
-    selectSquare(pos + 9, piece);
-  }
-  if(!cornersL(pos)){
-    selectSquare(pos-1, piece);
-  }
-  if(!cornersR(pos)){
-    selectSquare(pos+1, piece);
-  }
-  if(!cornersT(pos)){
-    selectSquare(pos-8, piece);
-  }
-  if(!cornersT(pos) && !cornersL(pos)){
-    selectSquare(pos-9, piece);
-  }
-  if(!cornersT(pos) && !cornersR(pos)){
-    selectSquare(pos-7, piece);
+    div[i].removeEventListener('click', move);
   }
 }
 

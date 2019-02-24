@@ -1,36 +1,51 @@
 function moveQu(pos, piece){
-  var i;
-  for (i = pos-8; i < Squares.length; i+=8) {
-    selectSquare(i, piece);
-  }
+  var i, max;
+  var row = Math.floor(pos/8);
+  var col = Math.floor(pos%8);
 
-  for (i = pos-8; i > 0; i-=8) {
-    selectSquare(i, piece);
+  for (i = pos+8; i < Squares.length; i+=8) {
+    if(selectSquare(i, piece)){
+      break;
+    };
   }
-  for (i = pos-1; i >= Math.floor(pos/8) * 8; i--) {
-    selectSquare(i, piece);
+  for (i = pos - 8; i >= 0; i-=8) {
+    if(selectSquare(i, piece)){
+      break;
+    };
   }
-
-
-  if(!cornersB(pos) && !cornersL(pos)){
-    selectSquare(pos + 7, piece);
+  for (i = pos - 1; i >= row * 8; i--) {
+    if(selectSquare(i, piece)){
+      break;
+    };
   }
-  if(!cornersB(pos) && !cornersR(pos)){
-    selectSquare(pos + 9, piece);
+  for (i = pos + 1; i <= (row * 8) + 7; i++) {
+    if(selectSquare(i, piece)){
+      break;
+    };
+  };
+  max = (row - col) * 8;
+  for(i = pos - 9; i >= (max < 0 ? 0 : max); i-=9){
+    if(selectSquare(i, piece)){
+      break;
+    };
+  };
+  max = ((row-(7-col)) * 8) + 7;
+  for(i = pos - 7; i >= (max < 0 ? 0 : max); i-=7){
+    if(selectSquare(i, piece)){
+      break;
+    };
   }
-  if(!cornersL(pos)){
-    selectSquare(pos-1, piece);
-  }
-  if(!cornersR(pos)){
-    selectSquare(pos+1, piece);
-  }
-  if(!cornersT(pos)){
-    selectSquare(pos-8, piece);
-  }
-  if(!cornersT(pos) && !cornersL(pos)){
-    selectSquare(pos-9, piece);
-  }
-  if(!cornersT(pos) && !cornersR(pos)){
-    selectSquare(pos-7, piece);
+  max = (row + col) * 8;
+  for(i = pos + 7; i <= (max >= Squares.length ? Squares.length - 1 : max); i+=7){
+    if(selectSquare(i, piece)){
+      break;
+    };
+  };
+  max = ((row +(7-col)) * 8) + 7;
+  console.log(max);
+  for(i = pos + 9; i <= (max >= Squares.length ? Squares.length-1 : max); i+=9){
+    if(selectSquare(i, piece)){
+      break;
+    };
   }
 }
