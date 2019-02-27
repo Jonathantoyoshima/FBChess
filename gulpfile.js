@@ -4,24 +4,29 @@ const concat = require('gulp-concat');
 const browserSync = require('browser-sync').create();
 const sass = require('gulp-sass');
 const sourcemaps = require('gulp-sourcemaps');
+const exec = require('child_process').exec;
+
 
 sass.compiler = require('node-sass');
 
 function server() {
   browserSync.init({
-    server: {
-      baseDir:"./app",
-      https:true
-    }
+    https:true,
+    proxy: "localhost:5000",
+    // server: {
+    // //   // proxy:"http://localhost:5000",
+    // //   baseDir:"./public",
+    // //   // https:true
+    // }
   })
 }
 
-function clean(cb){
-  cb();
+function firebase(){
+  exec("firebase serve");
 }
 
 function build() {
-  return src('./src/*.html').pipe(dest('./app'));
+  return src('./src/*.html').pipe(dest('./public'));
 }
 
 function script() {
@@ -33,7 +38,7 @@ function script() {
          }))
          .pipe(concat('script.all.js'))
          .pipe(sourcemaps.write('.'))
-         .pipe(dest('./app/js'))
+         .pipe(dest('./public/js'))
 }
 
 function style() {
@@ -42,7 +47,7 @@ function style() {
          .pipe(sass().on('error', sass.logError))
          .pipe(concat('style.css'))
          .pipe(sourcemaps.write('.'))
-         .pipe(dest('./app/css'));
+         .pipe(dest('./public/css'));
 }
 
 function watcher(){
@@ -56,6 +61,5 @@ function watcher(){
 
 exports.build = build;
 exports.default = series(
-  clean,
   parallel(build, style, script),
-  parallel(watcher, server));
+  parallel(firebase, watcher, server));

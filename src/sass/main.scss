@@ -2,10 +2,14 @@ body{
   background-color: #333;
   box-sizing: border-box;
 }
+.data{
+  color:#fff;
+}
 .Board{
   display: flex;
   flex-wrap: wrap;
   width: 240px;
+  visibility: hidden;
 
 }
 .Square{
