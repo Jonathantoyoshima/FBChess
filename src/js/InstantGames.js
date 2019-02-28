@@ -27,25 +27,44 @@ window.onload = function(){
       document.querySelector('.playerId').innerHTML = "Id: " + playerId;
       document.querySelector('.contextId').innerHTML = "ContextId: " + contextId;
       document.querySelector('.contextType').innerHTML = "Context Type: " + contextType;
-
-      // var connectedPlayers = FBInstant.player.getConnectedPlayersAsync()
-      // .then(function(players) {
-      //   console.log(players.map(function(player) {
-      //     return {
-      //       id: player.getID(),
-      //       name: player.getName(),
-      //     }
-      //   }));
-      // });
-
-  // Start loading game assets here
+    });
   });
-})
-}
+};
 
-document.querySelector('.add').addEventListener('click', function(){
-  firebase.firestore().collection('players').add({
-    messsage:"OII",
+document.querySelector('.Enter').addEventListener('click', function() {
+  var room = firebase.firestore().collection('room');
+  room.get().then(function(doc){
+    if(doc.empty){
+      room.add({players: 1});
+    }else{
+      doc.forEach(function(value){
+        if (value.data().players < 2) {
+          room.doc(value.id).set({players: 2});
+        }else{
+          room.add({players: 1});
+        }
+      });
+    };
+  });
+  // add({
+  //   players:1
+  // })
+  // room.get().then(function(rooms){
+  //   if(rooms.exists){
+  //     var test = rooms.where("players", "<", 1);
+  //     console.log(test)
+  //   }else{
+  //     rooms.add({
+  //       players: 1
+  //     })
+  //   }
+  // });
+});
+
+document.querySelector('.play').addEventListener('click', function(){
+  firebase.firestore().collection('room001').add({
+    player: "Player1",
+    move:"A1-A2",
     timestamp: firebase.firestore.FieldValue.serverTimestamp(),
   }).catch(function(error){
     console.log('Cant access.');
@@ -53,21 +72,22 @@ document.querySelector('.add').addEventListener('click', function(){
 });
 
 function addMessage(message){
-  document.querySelector('.message').innerHTML += "<div>" + message.messsage + message.timestamp + "</div>";
+  document.querySelector('.message').innerHTML += "<div>" + message.player +": "+ message.move + "</div>";
 }
 // Loads chat messages history and listens for upcoming ones.
 function loadMessages() {
   // Create the query to load the last 12 messages and listen for new ones.
   var query = firebase.firestore()
-                  .collection('players')
+                  .collection('room001')
                   .orderBy('timestamp', 'desc')
-                  .limit(12);
+                  .limit(6);
 
   // Start listening to the query.
   query.onSnapshot(function(snapshot) {
     snapshot.docChanges().forEach(function(change) {
         var message = change.doc.data();
-        addMessage(message);
+        addMessage(message)
+
     });
   });
-}
+};
