@@ -4,8 +4,6 @@ const concat = require('gulp-concat');
 const browserSync = require('browser-sync').create();
 const sass = require('gulp-sass');
 const sourcemaps = require('gulp-sourcemaps');
-const exec = require('child_process').exec;
-
 
 sass.compiler = require('node-sass');
 
@@ -19,10 +17,6 @@ function server() {
     // //   // https:true
     // }
   })
-}
-
-function firebase(){
-  exec("firebase serve");
 }
 
 function build() {
@@ -62,4 +56,4 @@ function watcher(){
 exports.build = build;
 exports.default = series(
   parallel(build, style, script),
-  parallel(firebase, watcher, server));
+  parallel(watcher, server));

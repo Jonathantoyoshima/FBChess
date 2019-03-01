@@ -2,15 +2,17 @@ body{
   background-color: #333;
   box-sizing: border-box;
 }
-.data, .message{
+.data, .message, .login{
   color:#fff;
+}
+.data{
+  display: none;
 }
 .Board{
   display: flex;
   flex-wrap: wrap;
   width: 240px;
   visibility: hidden;
-
 }
 .Square{
   display: flex;
