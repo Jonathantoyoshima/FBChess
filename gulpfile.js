@@ -8,15 +8,15 @@ const sourcemaps = require('gulp-sourcemaps');
 sass.compiler = require('node-sass');
 
 function server() {
-  browserSync.init({
-    https:true,
-    proxy: "localhost:5000",
+  //browserSync.init({
+    //https:true,
+    //proxy: "localhost:5000",
     // server: {
     // //   // proxy:"http://localhost:5000",
     // //   baseDir:"./public",
     // //   // https:true
     // }
-  })
+  //})
 }
 
 function build() {

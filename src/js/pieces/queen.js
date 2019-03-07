@@ -1,3 +1,13 @@
+function Queen (name, position) {
+  this.tribe = "Queen",
+  this.type  = name,
+  this.isFirst=  true,
+  this.position =  position,
+  this.moveRule =  function() {
+    moveQu(this.position, this.type, this.isFirst)
+  }
+}
+
 function moveQu(pos, piece){
   var i, max;
   var row = Math.floor(pos/8);

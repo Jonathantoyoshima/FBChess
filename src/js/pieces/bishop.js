@@ -1,3 +1,13 @@
+function Bishop (name, position) {
+  this.tribe = "Bishop",
+  this.type  = name,
+  this.isFirst =  true,
+  this.position =  position,
+  this.moveRule =  function() {
+    moveBi(this.position, this.type)
+  }
+}
+
 function moveBi(pos, piece){
   var i, max;
   var row = Math.floor(pos/8);

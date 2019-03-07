@@ -2,7 +2,7 @@ body{
   background-color: #333;
   box-sizing: border-box;
 }
-.data, .message, .login{
+.data, .message, .login, .Register {
   color:#fff;
 }
 .data{
@@ -12,17 +12,18 @@ body{
   display: flex;
   flex-wrap: wrap;
   width: 240px;
-  visibility: hidden;
+  //visibility: hidden;
 }
 .Square{
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  //border: 1px solid #FFF;
+  border: 1px solid #FFF;
   width: 30px;
   height: 30px;
   color: #fff;
+  cursor:pointer;
   box-sizing: border-box;
 }
 

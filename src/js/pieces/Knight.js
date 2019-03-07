@@ -1,3 +1,13 @@
+function Knight (name, position) {
+  this.tribe = "Knight",
+  this.type  = name,
+  this.isFirst =  true,
+  this.position =  position,
+  this.moveRule =  function() {
+    moveKn(this.position, this.type)
+  }
+}
+
 function moveKn(pos, piece){
   var row = Math.floor(pos/8);
   var col = Math.floor(pos%8);
