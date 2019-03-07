@@ -1,14 +1,14 @@
-function Pawn (name, position) {
+function Pawn (name, position, isFirst) {
   this.tribe = "Pawn",
   this.type  = name,
-  this.isFirst=  true,
+  this.isFirst = isFirst,
   this.position =  position,
   this.moveRule =  function() {
     movePawn(this.position, this.type, this.isFirst)
   }
 }
 
-function movePawn(pos, piece, isFirst){
+function movePawn(pos, piece, isFirst) {
   var row = Math.floor(pos/8);
   var col = Math.floor(pos%8);
 

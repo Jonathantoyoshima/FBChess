@@ -1,97 +1,39 @@
-var playerID, roomID;
-var redPieces,bluePieces;
+var playerID, bluePieces, redPieces, roomID;
 
-function printdata(doc){
-  var msg = document.querySelector('.message');
-  var div = document.createElement('div');
-
-  var red = doc.redPieces.Ki.type + ":" + doc.redPieces.Ki.position + " ";
-  red += doc.redPieces.Qu.type + ":" + doc.redPieces.Qu.position + " ";
-  red += doc.redPieces.R1.type + ":" + doc.redPieces.R1.position + " ";
-  red += doc.redPieces.R2.type + ":" + doc.redPieces.R2.position + " ";
-  red += doc.redPieces.B1.type + ":" + doc.redPieces.B1.position + " ";
-  red += doc.redPieces.B2.type + ":" + doc.redPieces.B2.position + " ";
-  red += doc.redPieces.K1.type + ":" + doc.redPieces.K1.position + " ";
-  red += doc.redPieces.K2.type + ":" + doc.redPieces.K2.position + " ";
-  red += doc.redPieces.P1.type + ":" + doc.redPieces.P1.position + " ";
-  red += doc.redPieces.P2.type + ":" + doc.redPieces.P2.position + " ";
-  red += doc.redPieces.P3.type + ":" + doc.redPieces.P3.position + " ";
-  red += doc.redPieces.P4.type + ":" + doc.redPieces.P4.position + " ";
-  red += doc.redPieces.P5.type + ":" + doc.redPieces.P5.position + " ";
-  red += doc.redPieces.P6.type + ":" + doc.redPieces.P6.position + " ";
-  red += doc.redPieces.P7.type + ":" + doc.redPieces.P7.position + " ";
-  red += doc.redPieces.P8.type + ":" + doc.redPieces.P8.position + " ";
-
-  var blue = doc.bluePieces.Ki.type + ":" + doc.bluePieces.Ki.position + " ";
-  blue += doc.bluePieces.Qu.type + ":" + doc.bluePieces.Qu.position + " ";
-  blue += doc.bluePieces.R1.type + ":" + doc.bluePieces.R1.position + " ";
-  blue += doc.bluePieces.R2.type + ":" + doc.bluePieces.R2.position + " ";
-  blue += doc.bluePieces.B1.type + ":" + doc.bluePieces.B1.position + " ";
-  blue += doc.bluePieces.B2.type + ":" + doc.bluePieces.B2.position + " ";
-  blue += doc.bluePieces.K1.type + ":" + doc.bluePieces.K1.position + " ";
-  blue += doc.bluePieces.K2.type + ":" + doc.bluePieces.K2.position + " ";
-  blue += doc.bluePieces.P1.type + ":" + doc.bluePieces.P1.position + " ";
-  blue += doc.bluePieces.P2.type + ":" + doc.bluePieces.P2.position + " ";
-  blue += doc.bluePieces.P3.type + ":" + doc.bluePieces.P3.position + " ";
-  blue += doc.bluePieces.P4.type + ":" + doc.bluePieces.P4.position + " ";
-  blue += doc.bluePieces.P5.type + ":" + doc.bluePieces.P5.position + " ";
-  blue += doc.bluePieces.P6.type + ":" + doc.bluePieces.P6.position + " ";
-  blue += doc.bluePieces.P7.type + ":" + doc.bluePieces.P7.position + " ";
-  blue += doc.bluePieces.P8.type + ":" + doc.bluePieces.P8.position + " ";
-
-  redPieces = {
-    color: 'red',
-    P1: new Pawn(doc.redPieces.P1.type, doc.redPieces.P1.position, doc.redPieces.P1.isFirst),
-    P2: new Pawn(doc.redPieces.P2.type, doc.redPieces.P2.position, doc.redPieces.P2.isFirst),
-    P3: new Pawn(doc.redPieces.P3.type, doc.redPieces.P3.position, doc.redPieces.P3.isFirst),
-    P4: new Pawn(doc.redPieces.P4.type, doc.redPieces.P4.position, doc.redPieces.P4.isFirst),
-    P5: new Pawn(doc.redPieces.P5.type, doc.redPieces.P5.position, doc.redPieces.P5.isFirst),
-    P6: new Pawn(doc.redPieces.P6.type, doc.redPieces.P6.position, doc.redPieces.P6.isFirst),
-    P7: new Pawn(doc.redPieces.P7.type, doc.redPieces.P7.position, doc.redPieces.P7.isFirst),
-    P8: new Pawn(doc.redPieces.P8.type, doc.redPieces.P8.position, doc.redPieces.P8.isFirst),
-    Ki: new King(doc.redPieces.Ki.type, doc.redPieces.Ki.position),
-    Qu: new Queen(doc.redPieces.Qu.type, doc.redPieces.Qu.position),
-    R1: new Rook(doc.redPieces.R1.type, doc.redPieces.R1.position),
-    R2: new Rook(doc.redPieces.R2.type, doc.redPieces.R2.position),
-    K1: new Knight(doc.redPieces.K1.type, doc.redPieces.K1.position),
-    K2: new Knight(doc.redPieces.K2.type, doc.redPieces.K2.position),
-    B1: new Bishop(doc.redPieces.B1.type, doc.redPieces.B1.position),
-    B2: new Bishop(doc.redPieces.B2.type, doc.redPieces.B2.position),
-  }
-
-  bluePieces = {
-    color: 'blue',
-    P1: new Pawn(doc.bluePieces.P1.type, doc.bluePieces.P1.position, doc.bluePieces.P1.isFirst),
-    P2: new Pawn(doc.bluePieces.P2.type, doc.bluePieces.P2.position, doc.bluePieces.P2.isFirst),
-    P3: new Pawn(doc.bluePieces.P3.type, doc.bluePieces.P3.position, doc.bluePieces.P3.isFirst),
-    P4: new Pawn(doc.bluePieces.P4.type, doc.bluePieces.P4.position, doc.bluePieces.P4.isFirst),
-    P5: new Pawn(doc.bluePieces.P5.type, doc.bluePieces.P5.position, doc.bluePieces.P5.isFirst),
-    P6: new Pawn(doc.bluePieces.P6.type, doc.bluePieces.P6.position, doc.bluePieces.P6.isFirst),
-    P7: new Pawn(doc.bluePieces.P7.type, doc.bluePieces.P7.position, doc.bluePieces.P7.isFirst),
-    P8: new Pawn(doc.bluePieces.P8.type, doc.bluePieces.P8.position, doc.bluePieces.P8.isFirst),
-    Ki: new King(doc.bluePieces.Ki.type, doc.bluePieces.Ki.position),
-    Qu: new Queen(doc.bluePieces.Qu.type, doc.bluePieces.Qu.position),
-    R1: new Rook(doc.bluePieces.R1.type, doc.bluePieces.R1.position),
-    R2: new Rook(doc.bluePieces.R2.type, doc.bluePieces.R2.position),
-    K1: new Knight(doc.bluePieces.K1.type, doc.bluePieces.K1.position),
-    K2: new Knight(doc.bluePieces.K2.type, doc.bluePieces.K2.position),
-    B1: new Bishop(doc.bluePieces.B1.type, doc.bluePieces.B1.position),
-    B2: new Bishop(doc.bluePieces.B2.type, doc.bluePieces.B2.position),
-  }
-  var text =  document.createTextNode( red + blue );
-  div.appendChild(text);
-  msg.appendChild(div);
+function buildArray(arr, color) {
+  console.log(color)
+  Object.keys(arr).forEach(function(key) {
+    if(arr.hasOwnProperty(key)){
+      if(color === "red") {
+        redPieces[key] = Piece(key, arr[key].tribe, arr[key].position, arr[key].isFirst);
+      }else{
+        bluePieces[key] = Piece(key, arr[key].tribe, arr[key].position, arr[key].isFirst);
+      }
+    }
+  });
   render();
 }
 
-function snap(){
+function printdata(doc){
+  buildArray(doc.redPieces, "red");
+  buildArray(doc.bluePieces, "blue");
+
+  fire_redPieces = doc.redPieces;
+  fire_bluePieces = doc.bluePieces;
+}
+
+function snap() {
   firebase
   .firestore()
   .collection('room')
   .orderBy('timestamp', 'desc')
+  .limit(1)
   .onSnapshot(function(snap){
+    redPieces = {color:"red"};
+    bluePieces = {color:"blue"};
+
     snap.docChanges().forEach(function(change){
-    if(!snap.metadata.hasPendingWrites) {
+      if(!snap.metadata.hasPendingWrites) {
         printdata(change.doc.data());
       }
     })
