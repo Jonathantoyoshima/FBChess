@@ -15,7 +15,6 @@ function move(e){
     if (fire_bluePieces[e.target.hasPiece].tribe === "Pawn") {
       fire_bluePieces[e.target.hasPiece].isFirst = false;
     }
-
   }
   isRed = !isRed;
   registrer_moviment();

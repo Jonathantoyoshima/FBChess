@@ -1,5 +1,5 @@
 var Squares = document.querySelectorAll('.Square');
-var isRed = false;
+var whoPlay, isRed = false;
 var fire_redPieces = {
   R1:{tribe:"Rook", position: 0},
   K1:{tribe:"Knight", position: 1},
