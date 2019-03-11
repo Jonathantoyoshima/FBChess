@@ -1,4 +1,4 @@
-var playerID, bluePieces, redPieces, roomID;
+var myTurn, playerID, bluePieces, redPieces, roomID;
 
 document.addEventListener('DOMContentLoaded', function() {
   try {
@@ -9,8 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
 
-document.querySelector('.Enter').addEventListener('click',
-function(e){
+document.querySelector('.Enter').addEventListener('click', function(e){
   playerID = document.querySelector('#id_player_input').value;
   document.querySelector('.login').style.display = 'none';
   document.querySelector('.Register').style.display = 'block';

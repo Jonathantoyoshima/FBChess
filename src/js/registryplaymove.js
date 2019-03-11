@@ -13,6 +13,6 @@ function RegistringPlayMove(player, from, to) {
   openRoom.add(registry);
 }
 
-document.querySelector('.move').addEventListener('click', function(e){
-  RegistringPlayMove(playerID, 12, 14);
-});
+// document.querySelector('.move').addEventListener('click', function(e){
+//   RegistringPlayMove(playerID, 12, 14);
+// });
