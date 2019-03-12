@@ -12,7 +12,7 @@ function render() {
           Squares[i].innerHTML = piece;
           Squares[i].classList.add(redPieces.color);
           Squares[i].hasPiece = piece;
-          if ( isRed && myTurn) {
+          if ( isRed && myTurn ) {
             Squares[i].addEventListener('click', select);
           }
         }
@@ -25,8 +25,9 @@ function render() {
           Squares[i].innerHTML = piece;
           Squares[i].classList.add(bluePieces.color);
           Squares[i].hasPiece = piece;
-          if ( !isRed && !myTurn) {
+          if ( !isRed && !myTurn ) {
             Squares[i].addEventListener('click', select);
+
           }
         }
       }
@@ -52,5 +53,3 @@ function remove() {
     div[i].removeEventListener('click', move);
   }
 }
-
-render();

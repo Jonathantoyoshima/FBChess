@@ -1,4 +1,4 @@
-var myTurn, playerID, bluePieces, redPieces, roomID;
+var myTurn, bluePieces, redPieces, roomID;
 
 document.addEventListener('DOMContentLoaded', function() {
   try {
@@ -10,12 +10,17 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
 document.querySelector('.Enter').addEventListener('click', function(e){
-  playerID = document.querySelector('#id_player_input').value;
+  startGame();
+});
+
+function startGame(){
+  console.log(playerID);
+  //playerID = document.querySelector('#id_player_input').value;
   document.querySelector('.login').style.display = 'none';
   document.querySelector('.Register').style.display = 'block';
   document.querySelector('.Register').innerHTML = 'PlayerID: '+ playerID;
   lobby();
-});
+}
 
 //
 // function buildRoom(e){
