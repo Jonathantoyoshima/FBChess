@@ -1,4 +1,4 @@
-const { series, parallel, src, dest, watch } = require('gulp');
+const { series, parallel, src, dest, watch, declare } = require('gulp');
 const babel = require('gulp-babel');
 const concat = require('gulp-concat');
 const browserSync = require('browser-sync').create();

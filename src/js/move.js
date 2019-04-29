@@ -17,5 +17,5 @@ function move(e){
     }
   }
   isRed = !isRed;
-  registrer_moviment();
+  //registrer_moviment();
 }
